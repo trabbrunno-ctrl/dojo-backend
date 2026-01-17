@@ -1,6 +1,4 @@
 require("dotenv").config();
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Servidor rodando na porta", PORT));
 
 const express = require("express");
 const cors = require("cors");
@@ -17,8 +15,11 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }
 });
 
-app.get("/", (_, res) => {
+app.get("/", (req, res) => {
   res.send("Backend online 🚀");
 });
 
-app.listen(3000, () => console.log("Servidor rodando"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log("Servidor rodando na porta", PORT);
+});
